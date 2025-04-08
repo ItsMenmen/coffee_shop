@@ -11,7 +11,19 @@ func _physics_process(delta):
 	velocity = direction.normalized() * speed
 	move_and_slide()
 
-	# Empêche de sortir de l'écran
-	var screen_size = get_viewport_rect().size
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
+	var anim_sprite = $Sprite2D as AnimatedSprite2D
+
+	if direction != Vector2.ZERO:
+		# Choisir quelle animation jouer selon la direction
+		if direction.y < 0:
+			anim_sprite.play("up")
+		elif direction.y > 0:
+			anim_sprite.play("up")
+		else:
+			anim_sprite.play("walk")  # gauche / droite
+
+		# Flip horizontal si va à gauche
+		if direction.x != 0:
+			anim_sprite.flip_h = direction.x < 0
+	else:
+		anim_sprite.stop()
