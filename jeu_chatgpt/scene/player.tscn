@@ -45,3 +45,12 @@ animation = &"up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4qnqm")
+
+[node name="CafePopup" type="Label" parent="."]
+visible = false
+offset_left = -22.0
+offset_top = -78.0
+offset_right = 23.0
+offset_bottom = -55.0
+text = "☕ +1"
+metadata/_edit_use_anchors_ = true
