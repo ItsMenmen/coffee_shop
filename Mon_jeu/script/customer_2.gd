@@ -5,7 +5,7 @@ extends Node2D
 @onready var service_point = get_node("/root/café/ServicePoint")
 
 @export var texture: Texture  # Texture du client à afficher
-@export var visual_scale: Vector2 = Vector2(0.2, 0.2)  # Permet de définir la taille dans l’inspecteur
+@export var visual_scale: Vector2 = Vector2(0.15, 0.15)  # Permet de définir la taille dans l’inspecteur
 
 var speed := 100.0
 var moving := true
