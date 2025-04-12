@@ -1,13 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://daot3d38xs16x"]
+[gd_scene load_steps=14 format=3 uid="uid://daot3d38xs16x"]
 
 [ext_resource type="PackedScene" uid="uid://bbjgndmg1hct" path="res://scene/player.tscn" id="1_5d276"]
 [ext_resource type="Script" uid="uid://dg8t7ifxofnbm" path="res://script/customer_2.gd" id="1_27jxk"]
+[ext_resource type="Script" uid="uid://bvaq0lpc3por5" path="res://script/client_1.gd" id="1_evu52"]
 [ext_resource type="Texture2D" uid="uid://dn61iy6qi0fe6" path="res://art/customer.png" id="1_nqy2p"]
-[ext_resource type="Texture2D" uid="uid://fbpujqog73e7" path="res://art/customer2.png" id="2_rsyl1"]
+[ext_resource type="Texture2D" uid="uid://fbpujqog73e7" path="res://art/customer2 (2).png" id="2_rsyl1"]
 [ext_resource type="Script" uid="uid://78hdlsmnxgar" path="res://script/comptoir.gd" id="2_vlpfx"]
-[ext_resource type="PackedScene" uid="uid://drgjt71l088ty" path="res://scene/Client.tscn" id="3_o03ay"]
+[ext_resource type="Texture2D" uid="uid://bmicvkp6ew45j" path="res://art/bubble.png" id="3_o03ay"]
 [ext_resource type="Texture2D" uid="uid://vi4fiavtscqw" path="res://art/ChatGPT_Image_7_avr._2025__21_46_46-removebg-preview.png" id="4_4had8"]
 [ext_resource type="Texture2D" uid="uid://cm1qkl1bkc7g8" path="res://art/map.png" id="4_o03ay"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o03ay"]
+size = Vector2(99, 91)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o03ay"]
+radius = 28.0
+height = 96.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlpfx"]
 size = Vector2(204, 131)
@@ -17,17 +25,54 @@ size = Vector2(143, 93)
 
 [node name="café" type="Node2D"]
 
-[node name="Client" parent="." instance=ExtResource("3_o03ay")]
-
 [node name="customer2" type="Node2D" parent="."]
 position = Vector2(100, 100)
 script = ExtResource("1_27jxk")
-texture = ExtResource("1_nqy2p")
 
 [node name="Sprite2D" type="Sprite2D" parent="customer2"]
 top_level = true
 scale = Vector2(0.166667, 0.161765)
 texture = ExtResource("2_rsyl1")
+
+[node name="Client1" type="Area2D" parent="."]
+visible = false
+script = ExtResource("1_evu52")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Client1"]
+position = Vector2(110.25, 409)
+shape = SubResource("RectangleShape2D_o03ay")
+
+[node name="Sprite2D" type="Sprite2D" parent="Client1"]
+top_level = true
+position = Vector2(110.25, 409)
+scale = Vector2(0.138481, 0.137255)
+texture = ExtResource("1_nqy2p")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Client1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Client1/StaticBody2D"]
+top_level = true
+position = Vector2(110, 409)
+shape = SubResource("CapsuleShape2D_o03ay")
+
+[node name="SpeechBubble" type="Node2D" parent="Client1"]
+position = Vector2(1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Client1/SpeechBubble"]
+top_level = true
+position = Vector2(192.25, 343)
+scale = Vector2(0.3805, 0.156)
+texture = ExtResource("3_o03ay")
+
+[node name="Label" type="Label" parent="Client1/SpeechBubble"]
+top_level = true
+offset_left = 126.25
+offset_top = 328.0
+offset_right = 342.25
+offset_bottom = 359.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+metadata/_edit_use_anchors_ = true
 
 [node name="Sol" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -139,10 +184,10 @@ offset_bottom = 48.0
 text = "+1 €"
 
 [node name="EntryPoint" type="Marker2D" parent="."]
-position = Vector2(284, 244)
+position = Vector2(332, 305)
 
 [node name="ServicePoint" type="Marker2D" parent="."]
-position = Vector2(433, 560)
+position = Vector2(217, 466)
 
 [node name="ExitPoint" type="Marker2D" parent="."]
 position = Vector2(229, 304)
