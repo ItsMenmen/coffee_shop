@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bmicvkp6ew45j" path="res://art/bubble.png" id="3_x2vrg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evu52"]
-radius = 51.0
-height = 102.0
+radius = 68.0
+height = 136.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o03ay"]
 radius = 27.0

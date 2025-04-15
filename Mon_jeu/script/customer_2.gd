@@ -12,6 +12,8 @@ var moving := true
 var client_scene := preload("res://scene/Client.tscn")  # Le client interactif à instancier
 
 func _ready():
+	print("Texture client:", texture)
+
 	sprite.global_position = entry_point.global_position
 	sprite.texture = texture
 	sprite.scale = visual_scale  # 🔥 applique la taille dès le début
